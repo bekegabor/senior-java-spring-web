@@ -1,5 +1,7 @@
 package hu.ponte.hr.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import hu.ponte.hr.serialize.ImageMetaSerializer;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,6 +14,7 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonSerialize(using = ImageMetaSerializer.class)
 public class ImageMeta {
 
 	@Id
@@ -27,6 +30,6 @@ public class ImageMeta {
 	@Column(name = "size", nullable = false)
 	private long size;
 
-	@Column(name = "digitalSign", nullable = false)
+	@Column(name = "digitalSign", length = 344, nullable = false)
 	private String digitalSign;
 }
